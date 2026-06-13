@@ -36,3 +36,14 @@ Thumbs.db
 runs/
 outputs/
 artifacts/
+
+# Dataset and training outputs
+data/
+*.zip
+backend/checkpoints/
+backend/models/**/*.pth
+backend/models/**/*.pt
+backend/models/**/*.ckpt
+backend/models/**/*.onnx
+__pycache__/
+*.pyc
