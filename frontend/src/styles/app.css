@@ -17,16 +17,16 @@ button, input {
 }
 
 .app-shell {
-  width: min(1180px, calc(100vw - 32px));
+  width: min(1360px, calc(100vw - 40px));
   margin: 0 auto;
-  padding: 42px 0 64px;
+  padding: 34px 0 64px;
 }
 
 .hero {
   background: linear-gradient(135deg, #eef4ff, #ffffff);
   border: 1px solid #dce7fa;
   border-radius: 28px;
-  padding: 36px;
+  padding: 32px 36px;
   box-shadow: 0 18px 50px rgba(24, 50, 92, 0.08);
 }
 
@@ -50,7 +50,7 @@ button, input {
 }
 
 .hero p {
-  max-width: 760px;
+  max-width: 860px;
   color: #5d6a7e;
   font-size: 18px;
   line-height: 1.6;
@@ -90,9 +90,9 @@ button, input {
 
 .grid-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-  gap: 18px;
-  margin-top: 18px;
+  grid-template-columns: minmax(480px, 1.05fr) minmax(440px, 0.95fr);
+  gap: 20px;
+  margin-top: 20px;
   align-items: start;
 }
 
@@ -126,30 +126,71 @@ button, input {
   line-height: 1.55;
 }
 
+.uploader-card {
+  grid-column: 1;
+}
+
 .dropzone {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 360px;
+  min-height: 500px;
   border: 2px dashed #c8d4e6;
   border-radius: 20px;
   background: #f8fbff;
   overflow: hidden;
   cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.dropzone:hover,
+.dropzone.is-dragging {
+  border-color: #2456a6;
+  background: #eef5ff;
+  box-shadow: inset 0 0 0 4px rgba(36, 86, 166, 0.08);
+}
+
+.dropzone.is-dragging {
+  transform: translateY(-1px);
 }
 
 .dropzone input {
   display: none;
 }
 
+.preview-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  background: #0b1020;
+}
+
 .preview-image {
   width: 100%;
-  max-height: 420px;
+  height: min(58vh, 560px);
+  min-height: 430px;
   object-fit: contain;
   background: #0b1020;
 }
 
+.dropzone-hint {
+  text-align: center;
+  color: #d8e2f6;
+  background: rgba(11, 16, 32, 0.92);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 12px;
+}
+
 .dropzone-placeholder {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
   text-align: center;
   color: #5f6e83;
 }
@@ -157,8 +198,11 @@ button, input {
 .dropzone-placeholder span {
   display: block;
   font-weight: 800;
-  font-size: 18px;
-  margin-bottom: 6px;
+  font-size: 20px;
+}
+
+.dropzone-placeholder small {
+  color: #7a8798;
 }
 
 .primary-button {
@@ -181,6 +225,10 @@ button, input {
 .prediction-card,
 .gradcam-card {
   grid-column: 2;
+}
+
+.prediction-card {
+  min-height: 500px;
 }
 
 .prediction-main {
@@ -211,6 +259,16 @@ button, input {
   font-size: 22px;
 }
 
+.disclaimer-text {
+  color: #667287;
+  line-height: 1.55;
+  background: #f7f9fd;
+  border: 1px solid #e7edf7;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+}
+
 .probability-list {
   display: grid;
   gap: 10px;
@@ -218,9 +276,14 @@ button, input {
 
 .probability-row {
   display: grid;
-  grid-template-columns: 96px 1fr 56px;
+  grid-template-columns: minmax(128px, 170px) 1fr 58px;
   gap: 10px;
   align-items: center;
+}
+
+.probability-row span {
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .probability-bar-wrap {
@@ -254,15 +317,24 @@ button, input {
   margin-bottom: 0;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1040px) {
   .grid-layout {
     grid-template-columns: 1fr;
   }
+  .uploader-card,
   .prediction-card,
   .gradcam-card {
     grid-column: auto;
   }
   .prediction-main {
     grid-template-columns: 1fr;
+  }
+  .dropzone,
+  .preview-frame {
+    min-height: 380px;
+  }
+  .preview-image {
+    min-height: 320px;
+    height: min(54vh, 460px);
   }
 }
