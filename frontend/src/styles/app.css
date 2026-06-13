@@ -15,11 +15,19 @@ button, input { font: inherit; }
 }
 
 .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+  gap: 22px;
+  align-items: stretch;
   background: linear-gradient(135deg, #eef4ff, #ffffff);
   border: 1px solid #dce7fa;
   border-radius: 24px;
   padding: 24px 28px;
   box-shadow: 0 18px 50px rgba(24, 50, 92, 0.08);
+}
+
+.hero-content {
+  min-width: 0;
 }
 
 .hero-badge {
@@ -42,15 +50,71 @@ button, input { font: inherit; }
 }
 
 .hero p {
-  max-width: 900px;
+  max-width: 880px;
   color: #5d6a7e;
   font-size: 16px;
   line-height: 1.55;
   margin: 0;
 }
 
+.hero-stats {
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid #dce7fa;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.hero-stats-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  color: #2456a6;
+  margin-bottom: 12px;
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.hero-stat-item {
+  background: #f6f8fc;
+  border: 1px solid #e2e8f2;
+  border-radius: 14px;
+  padding: 10px 11px;
+}
+
+.hero-stat-item span {
+  display: block;
+  color: #6a778d;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.hero-stat-item strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.hero-stats-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: #667287;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .disclaimer-box,
-.status-strip,
 .error-box {
   margin-top: 14px;
   border-radius: 16px;
@@ -65,22 +129,6 @@ button, input { font: inherit; }
   color: #634b00;
 }
 
-.status-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  background: #ffffff;
-  border: 1px solid #e2e8f2;
-  color: #586579;
-}
-
-.status-strip > div {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* 핵심: input image | Grad-CAM output image | metrics 를 한 줄 3열로 고정 */
 .grid-layout {
   display: grid;
   grid-template-columns: minmax(360px, 1.05fr) minmax(360px, 1.05fr) minmax(360px, 0.9fr);
@@ -280,6 +328,9 @@ button, input { font: inherit; }
 
 @media (max-width: 1280px) {
   .app-shell { width: min(1180px, calc(100vw - 28px)); }
+  .hero {
+    grid-template-columns: 1fr;
+  }
   .grid-layout {
     grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr);
     grid-template-areas:
@@ -297,6 +348,7 @@ button, input { font: inherit; }
       "gradcam"
       "metrics";
   }
+  .hero-stats-grid { grid-template-columns: 1fr 1fr; }
   .prediction-main { grid-template-columns: 1fr; }
   .dropzone, .preview-frame { min-height: 360px; }
   .preview-image, .gradcam-image { height: 360px; }
