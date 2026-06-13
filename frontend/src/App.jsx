@@ -7,14 +7,31 @@ import PredictionCard from "./components/PredictionCard.jsx";
 import GradCamViewer from "./components/GradCamViewer.jsx";
 
 const MODEL_INFO = [
-  { label: "Train images", value: "15,000" },
-  { label: "Valid images", value: "202" },
+  { label: "Train", value: "15,000" },
+  { label: "Valid", value: "202" },
   { label: "Labels", value: "14" },
-  { label: "Model", value: "EfficientNet-B0" },
-  { label: "Input size", value: "320×320" },
+  { label: "Model", value: "EffNet-B0" },
+  { label: "Size", value: "320px" },
   { label: "Best AUROC", value: "0.836" },
   { label: "Mean AP", value: "0.523" },
-  { label: "Best epoch", value: "4 / 5" },
+  { label: "Best epoch", value: "4/5" },
+];
+
+const LABEL_INFO = [
+  { label: "No Finding", train: "3,250", auc: "0.823" },
+  { label: "Enlarged Cardio.", train: "961", auc: "0.660" },
+  { label: "Cardiomegaly", train: "2,230", auc: "0.791" },
+  { label: "Lung Opacity", train: "7,072", auc: "0.899" },
+  { label: "Lung Lesion", train: "770", auc: "0.697" },
+  { label: "Edema", train: "4,194", auc: "0.895" },
+  { label: "Consolidation", train: "1,464", auc: "0.867" },
+  { label: "Pneumonia", train: "994", auc: "0.818" },
+  { label: "Atelectasis", train: "3,032", auc: "0.856" },
+  { label: "Pneumothorax", train: "1,584", auc: "0.826" },
+  { label: "Pleural Effusion", train: "5,918", auc: "0.883" },
+  { label: "Pleural Other", train: "413", auc: "0.955*" },
+  { label: "Fracture", train: "710", auc: "N/A" },
+  { label: "Support Devices", train: "9,557", auc: "0.896" },
 ];
 
 export default function App() {
@@ -65,10 +82,17 @@ export default function App() {
         </div>
 
         <aside className="hero-stats" aria-label="Model training summary">
-          <div className="hero-stats-title">
-            <BarChart3 size={18} />
-            Model summary
+          <div className="hero-stats-topline">
+            <div className="hero-stats-title">
+              <BarChart3 size={18} />
+              Model & label summary
+            </div>
+            <div className="hero-stats-note">
+              <Database size={14} />
+              CheXpert subset · frontal-only · uncertain→0
+            </div>
           </div>
+
           <div className="hero-stats-grid">
             {MODEL_INFO.map((item) => (
               <div className="hero-stat-item" key={item.label}>
@@ -77,9 +101,19 @@ export default function App() {
               </div>
             ))}
           </div>
-          <div className="hero-stats-note">
-            <Database size={14} />
-            CheXpert subset, frontal-only, uncertain labels mapped to zero.
+
+          <div className="label-summary-header">
+            Per-label: <strong>Train positives / AUROC</strong>
+            <small>* valid positives too few; interpret cautiously</small>
+          </div>
+          <div className="label-summary-grid">
+            {LABEL_INFO.map((item) => (
+              <div className="label-summary-item" key={item.label}>
+                <span>{item.label}</span>
+                <strong>{item.train}</strong>
+                <em>{item.auc}</em>
+              </div>
+            ))}
           </div>
         </aside>
       </header>
