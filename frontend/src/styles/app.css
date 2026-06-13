@@ -1,0 +1,268 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f5f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button, input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 42px 0 64px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #eef4ff, #ffffff);
+  border: 1px solid #dce7fa;
+  border-radius: 28px;
+  padding: 36px;
+  box-shadow: 0 18px 50px rgba(24, 50, 92, 0.08);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #315d9f;
+  background: #e4efff;
+  border: 1px solid #cfe0fb;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 18px 0 10px;
+  font-size: clamp(34px, 5vw, 56px);
+  letter-spacing: -0.045em;
+}
+
+.hero p {
+  max-width: 760px;
+  color: #5d6a7e;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.disclaimer-box,
+.status-strip,
+.error-box {
+  margin-top: 18px;
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+
+.disclaimer-box {
+  display: flex;
+  gap: 10px;
+  background: #fff8e5;
+  border: 1px solid #f0d485;
+  color: #634b00;
+}
+
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f2;
+  color: #586579;
+}
+
+.status-strip > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+  gap: 18px;
+  margin-top: 18px;
+  align-items: start;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f2;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 16px 42px rgba(22, 36, 62, 0.06);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+}
+
+.card-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  margin: 0 0 4px;
+}
+
+.card-header p,
+.gradcam-card p {
+  margin: 0;
+  color: #667287;
+  line-height: 1.55;
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  border: 2px dashed #c8d4e6;
+  border-radius: 20px;
+  background: #f8fbff;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dropzone input {
+  display: none;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: #0b1020;
+}
+
+.dropzone-placeholder {
+  text-align: center;
+  color: #5f6e83;
+}
+
+.dropzone-placeholder span {
+  display: block;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.primary-button {
+  width: 100%;
+  margin-top: 16px;
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  background: #2456a6;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.prediction-card,
+.gradcam-card {
+  grid-column: 2;
+}
+
+.prediction-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+.prediction-main > div {
+  background: #f6f8fc;
+  border: 1px solid #e3e9f3;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.eyebrow {
+  display: block;
+  color: #6a778d;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.prediction-main strong {
+  font-size: 22px;
+}
+
+.probability-list {
+  display: grid;
+  gap: 10px;
+}
+
+.probability-row {
+  display: grid;
+  grid-template-columns: 96px 1fr 56px;
+  gap: 10px;
+  align-items: center;
+}
+
+.probability-bar-wrap {
+  height: 10px;
+  background: #e9eef6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.probability-bar {
+  height: 100%;
+  background: #2456a6;
+  border-radius: inherit;
+}
+
+.gradcam-image {
+  width: 100%;
+  border-radius: 16px;
+  margin-top: 14px;
+  background: #0b1020;
+}
+
+.error-box {
+  background: #ffecec;
+  border: 1px solid #f2b3b3;
+  color: #7a1919;
+}
+
+.error-box pre {
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .prediction-card,
+  .gradcam-card {
+    grid-column: auto;
+  }
+  .prediction-main {
+    grid-template-columns: 1fr;
+  }
+}

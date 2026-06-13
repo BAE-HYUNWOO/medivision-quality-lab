@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: monthly-model-health-report
+  namespace: medivision
+spec:
+  schedule: "0 0 1 * *"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: model-health-report
+              image: medivision-model:latest
+              imagePullPolicy: IfNotPresent
+              command: ["python", "-m", "ml.evaluate"]
+              args:
+                - "--model-path"
+                - "/app/models/pneumonia_resnet18_224.pt"
+                - "--data-flag"
+                - "pneumoniamnist"
+                - "--size"
+                - "224"
+                - "--model-name"
+                - "resnet18"

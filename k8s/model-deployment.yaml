@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-api
+  namespace: medivision
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model-api
+  template:
+    metadata:
+      labels:
+        app: model-api
+    spec:
+      containers:
+        - name: model-api
+          image: medivision-model:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DISABLE_MODEL_PROXY
+              value: "true"
+            - name: MODEL_PATH
+              value: "/app/models/pneumonia_resnet18_224.pt"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-service
+  namespace: medivision
+spec:
+  selector:
+    app: model-api
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000

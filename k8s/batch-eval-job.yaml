@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch-eval-placeholder
+  namespace: medivision
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: batch-eval
+          image: medivision-model:latest
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "ml.evaluate"]
+          args:
+            - "--model-path"
+            - "/app/models/pneumonia_resnet18_224.pt"
+            - "--data-flag"
+            - "pneumoniamnist"
+            - "--size"
+            - "224"
+            - "--model-name"
+            - "resnet18"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"

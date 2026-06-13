@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+
+# Data and models
+/data/*
+!/data/README.md
+!/data/.gitkeep
+/models/*
+!/models/README.md
+!/models/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.npz
+*.npy
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+runs/
+outputs/
+artifacts/
